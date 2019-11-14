@@ -22,7 +22,7 @@ led2 = placa.get_pin('d:12:o')
 led3 = placa.get_pin('d:13:o')
 time.sleep(0.5)
 ventana = Tk()
-ventana.geometry('1280x800')
+ventana.geometry('250x250')
 ventana.title("Punto Uno")
 
 # Fetch the service account key JSON file contents
@@ -51,7 +51,7 @@ def adc_read1():
     time.sleep(0.1)
     ref = db.reference('sensor')
     ref.update({
-        'sensor1/lector2': valor
+        'sensor1/lector1': valor
         })
 
 def adc_read2():
