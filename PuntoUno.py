@@ -26,11 +26,11 @@ ventana.geometry('1280x800')
 ventana.title("Punto Uno")
 
 # Fetch the service account key JSON file contents
-#cred = credentials.Certificate('key/key.json')
+cred = credentials.Certificate('key/key.json')
 # Initialize the app with a service account, granting admin privileges
-#firebase_admin.initialize_app(cred, {
- #   'databaseURL': 'https://tarea3-d2963.firebaseio.com/'
-#})
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://parcial-d03bc.firebaseio.com/'
+})
 
 
 Frame1 = Frame(ventana, bg="gray", highlightthickness=1, width=1280, height=800, bd= 5)
@@ -49,30 +49,30 @@ def adc_read1():
     print(x)
     adc_data.set(x)
     time.sleep(0.1)
-    #ref = db.reference('sensor')
-    #ref.update({
-     #   'sensor1/adc': lector_1
-     #   })
+    ref = db.reference('sensor')
+    ref.update({
+        'sensor1/lector2': valor
+        })
 
 def adc_read2():
     x=a_1.read()
     print(x)
     adc_data2.set(x)
     time.sleep(0.1)
-    #ref = db.reference('sensor')
-   # ref.update({
-   #     'sensor2/adc': lector_2
-  #      })
+    ref = db.reference('sensor')
+    ref.update({
+        'sensor2/lector2': valor
+        })
 
 def adc_read3():
     x=a_2.read()
     print(x)
     adc_data3.set(x)
     time.sleep(0.1)
- #   ref = db.reference('sensor')
-  #  ref.update({
-   #     'sensor3/adc': lector_3
-    #    })
+    ref = db.reference('sensor')
+    ref.update({
+        'sensor3/lector3': valor
+        })
     
 valor.configure(textvariable=adc_data)
 valor.place(x=20, y=30)
