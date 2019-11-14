@@ -51,7 +51,7 @@ def adc_read1():
     time.sleep(0.1)
     ref = db.reference('sensor')
     ref.update({
-        'sensor1/lector1': valor
+        'sensor1/lector1': x
         })
 
 def adc_read2():
@@ -61,7 +61,7 @@ def adc_read2():
     time.sleep(0.1)
     ref = db.reference('sensor')
     ref.update({
-        'sensor2/lector2': valor
+        'sensor2/lector2': x
         })
 
 def adc_read3():
@@ -71,7 +71,7 @@ def adc_read3():
     time.sleep(0.1)
     ref = db.reference('sensor')
     ref.update({
-        'sensor3/lector3': valor
+        'sensor3/lector3': x
         })
     
 valor.configure(textvariable=adc_data)
