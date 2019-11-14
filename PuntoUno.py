@@ -32,7 +32,6 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://parcial-d03bc.firebaseio.com/'
 })
 
-
 Frame1 = Frame(ventana, bg="gray", highlightthickness=1, width=1280, height=800, bd= 5)
 Frame1.place(x = 0,y = 0)
 
