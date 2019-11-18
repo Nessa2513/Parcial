@@ -22,8 +22,8 @@ led5 = placa.get_pin('d:12:o')
 led6 = placa.get_pin('d:13:o')
 time.sleep(0.5)
 ventana = Tk()
-ventana.geometry('250x250')
-ventana.title("Punto Uno")
+ventana.geometry('450x210')
+ventana.title("Punto Dos")
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('key/key.json')
@@ -35,58 +35,46 @@ firebase_admin.initialize_app(cred, {
 Frame1 = Frame(ventana, bg="gray", highlightthickness=1, width=1280, height=800, bd= 5)
 Frame1.place(x = 0,y = 0)
 
-valor= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
+valor= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=25)
 adc_data=StringVar()
-valor2= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
+valor2= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=25)
 adc_data2=StringVar()
-valor3= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
+valor3= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=25)
 adc_data3=StringVar()
 variable=StringVar()
       
 def adc_read1():
-    x=a_0.read()
-    print(x)
-    adc_data.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor1/lector1': x
-        })
-
+    ref=db.reference('sensor')
+    x=ref.get()
+    print(x.get('sensor1'))
+    adc_data.set(x.get('sensor1'))
+    
 def adc_read2():
-    x=a_1.read()
-    print(x)
-    adc_data2.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor2/lector2': x
-        })
+    ref=db.reference('sensor')
+    x3=ref.get()
+    print(x3.get('sensor2'))
+    adc_data2.set(x3.get('sensor2'))
 
 def adc_read3():
-    x=a_2.read()
-    print(x)
-    adc_data3.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor3/lector3': x
-        })
-    
+    ref=db.reference('sensor')
+    x2=ref.get()
+    print(x2.get('sensor3'))
+    adc_data3.set(x2.get('sensor3'))
+
+
 valor.configure(textvariable=adc_data)
 valor.place(x=20, y=30)
-start_button=Button(Frame1,text="lector 1",command=adc_read1)
-start_button.place(x=95, y=32)
+adc1_update=Button(Frame1,text="adc1_update",command=adc_read1)
+adc1_update.place(x=330, y=32)
 
 valor2.configure(textvariable=adc_data2)
 valor2.place(x=20, y=80)
-start_button2=Button(Frame1,text="lector 2",command=adc_read2)
-start_button2.place(x=95, y=82)
+adc2_update=Button(Frame1,text="adc2_update",command=adc_read2)
+adc2_update.place(x=330, y=82)
 
 valor3.configure(textvariable=adc_data3)
 valor3.place(x=20, y=130)
-start_button3=Button(Frame1,text="lector 3",command=adc_read3)
-start_button3.place(x=95, y=132)
+adc3_update=Button(Frame1,text="adc3_update",command=adc_read3)
+adc3_update.place(x=330, y=132)
 
 ventana.mainloop()
-

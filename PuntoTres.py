@@ -23,7 +23,7 @@ led6 = placa.get_pin('d:13:o')
 time.sleep(0.5)
 ventana = Tk()
 ventana.geometry('250x250')
-ventana.title("Punto Uno")
+ventana.title("Punto Tres")
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('key/key.json')
@@ -42,51 +42,30 @@ adc_data2=StringVar()
 valor3= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
 adc_data3=StringVar()
 variable=StringVar()
-      
-def adc_read1():
-    x=a_0.read()
-    print(x)
-    adc_data.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor1/lector1': x
-        })
 
-def adc_read2():
-    x=a_1.read()
-    print(x)
-    adc_data2.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor2/lector2': x
-        })
 
-def adc_read3():
-    x=a_2.read()
-    print(x)
-    adc_data3.set(x)
-    time.sleep(0.1)
-    ref = db.reference('sensor')
-    ref.update({
-        'sensor3/lector3': x
-        })
+
+def entrada():
+    x=input("Numero de pin")
+    print("Número pin: %s\n" % (x.get())
+    if x>=8 & x<=13:
+              print("x")
+          else:
+              print("Debe ingresar un número dentro del rango")
+          
+
+
+    #def clicked():
+ #   valor.configure(text="Se presionó el boton!")
     
-valor.configure(textvariable=adc_data)
+#valor=Label(ventana,textvariable=variable)
+#valor.place(x=20, y=90)
+#btn=Button(ventana,text="start",command=clicked, font=("Times new roman", 10))
+#btn.place(x=20, y=120)
+
+    
+valor.configure(textvariable=variable)
 valor.place(x=20, y=30)
-start_button=Button(Frame1,text="lector 1",command=adc_read1)
+start_button=Button(Frame1,text="lector 1",command=entrada)
 start_button.place(x=95, y=32)
-
-valor2.configure(textvariable=adc_data2)
-valor2.place(x=20, y=80)
-start_button2=Button(Frame1,text="lector 2",command=adc_read2)
-start_button2.place(x=95, y=82)
-
-valor3.configure(textvariable=adc_data3)
-valor3.place(x=20, y=130)
-start_button3=Button(Frame1,text="lector 3",command=adc_read3)
-start_button3.place(x=95, y=132)
-
 ventana.mainloop()
-
