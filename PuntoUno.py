@@ -89,4 +89,3 @@ start_button3=Button(Frame1,text="lector 3",command=adc_read3)
 start_button3.place(x=95, y=132)
 
 ventana.mainloop()
-
