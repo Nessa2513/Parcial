@@ -1,4 +1,5 @@
 import firebase_admin
+import tkinter as punto_tres
 from firebase_admin import credentials
 from firebase_admin import db
 
@@ -31,41 +32,23 @@ cred = credentials.Certificate('key/key.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://parcial-d03bc.firebaseio.com/'
 })
+def validacion():
+    print("Número pin: %s" % int(e1.get()))
 
-Frame1 = Frame(ventana, bg="gray", highlightthickness=1, width=1280, height=800, bd= 5)
-Frame1.place(x = 0,y = 0)
+master = punto_tres.Tk()
+punto_tres.Label(master, 
+         text="Número Pin").grid(row=0)
 
-valor= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
-adc_data=StringVar()
-valor2= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
-adc_data2=StringVar()
-valor3= Label(Frame1, bg='cadet blue1', font=("Arial Bold", 15), fg="black", width=5)
-adc_data3=StringVar()
-variable=StringVar()
+e1 = punto_tres.Entry(master)
 
+e1.grid(row=0, column=1)
 
+punto_tres.Button(master, 
+          text='Imprimir', command=validacion).grid(row=3, 
+                                                       column=1, 
+                                                       sticky=punto_tres.W, 
+                                                       pady=4)
 
-def entrada():
-    x=input("Numero de pin")
-    print("Número pin: %s\n" % (x.get())
-    if x>=8 & x<=13:
-              print("x")
-          else:
-              print("Debe ingresar un número dentro del rango")
-          
+punto_tres.mainloop()
 
-
-    #def clicked():
- #   valor.configure(text="Se presionó el boton!")
-    
-#valor=Label(ventana,textvariable=variable)
-#valor.place(x=20, y=90)
-#btn=Button(ventana,text="start",command=clicked, font=("Times new roman", 10))
-#btn.place(x=20, y=120)
-
-    
-valor.configure(textvariable=variable)
-valor.place(x=20, y=30)
-start_button=Button(Frame1,text="lector 1",command=entrada)
-start_button.place(x=95, y=32)
 ventana.mainloop()
