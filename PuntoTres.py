@@ -34,6 +34,13 @@ firebase_admin.initialize_app(cred, {
 })
 def validacion():
     print("Número pin: %s" % int(e1.get()))
+    if int(e1.get())<8 & int(e1.get())>13:
+        print("Ingrese un número dentro del rango")
+
+def enc_apg():
+    print("Número: %s" % int(e2.get()))
+    if int(e2.get())<0 & int(e2.get())>1:
+        print("Ingrese 0 para apagar y 1 para encender")
 
 master = punto_tres.Tk()
 punto_tres.Label(master, 
@@ -46,6 +53,18 @@ e1.grid(row=0, column=1)
 punto_tres.Button(master, 
           text='Imprimir', command=validacion).grid(row=3, 
                                                        column=1, 
+                                                       sticky=punto_tres.W, 
+                                                       pady=4)
+punto_tres.Label(master, 
+         text="Número:").grid(row=1)
+
+e2 = punto_tres.Entry(master)
+
+e2.grid(row=1, column=1)
+
+punto_tres.Button(master, 
+          text='Aceptar', command=enc_apg).grid(row=3, 
+                                                       column=5, 
                                                        sticky=punto_tres.W, 
                                                        pady=4)
 
